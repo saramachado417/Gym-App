@@ -1,16 +1,18 @@
 public class Cliente : Persona
 {
-    private double membresia;
+    private double pago;
     public string TipoMembresia = "";
-    public double Membresia
+    public string FechaIngreso = "";
+    public bool TieneMembresia;
+    public double Pago
     {
-        get { return membresia; }
+        get { return pago; }
         set {
             if(value >= 0)
             {
-                membresia = value;
+                pago = value;
             } else {
-                Console.WriteLine("La membresía no puede ser negativa!");
+                Console.WriteLine("El pago no puede ser negativo!");
             }
         }
     }
@@ -20,13 +22,18 @@ public class Cliente : Persona
             string documento,
             string correo,
             int edad,
-            double membresia,
-            string tipoMembresia
+            double pago,
+            string tipoMembresia,
+            bool tieneMembresia,
+            string fechaIngreso
         )
         :base(nombre, documento, correo, edad)
         {
-            this.membresia = membresia;
+            this.pago = pago;
             this.TipoMembresia = tipoMembresia;
+            this.TieneMembresia = tieneMembresia;
+            this.FechaIngreso = fechaIngreso;
+            
         }
 
     public Cliente(
@@ -34,27 +41,36 @@ public class Cliente : Persona
             string documento,
             string correo,
             int edad,
-            double membresia
+            double pago,
+            bool tieneMembresia,
+            string fechaIngreso
         )
         :base(nombre, documento, correo, edad)
         {
-            this.membresia = membresia;
+            this.pago = pago;
+            this.TieneMembresia = tieneMembresia;
+            this.FechaIngreso = fechaIngreso;
         }
 
     public override void MostrarInfo()
+
     {
         base.MostrarInfo();
         Console.WriteLine("Tipo de Membresía: " + TipoMembresia);
-        Console.WriteLine("Membresía: $" + Membresia.ToString("N0"));
+        Console.WriteLine("Pago: $" + Pago.ToString("N0"));
     }
 
-    public void CalcularMembresia(string tipo)
+    public void Tienemembresia()
     {
-        Console.WriteLine(this.membresia);
+        Console.WriteLine("Tiene Membresia: " + TieneMembresia);
+    }
+    public void CalcularPago(string tipo)
+    {
+        Console.WriteLine(this.pago);
     }
 
-    public void CalcularMembresia(double descuento)
+    public void CalcularPago(double descuento)
     {
-        Console.WriteLine(this.membresia * descuento);
+        Console.WriteLine(this.pago * descuento);
     }
 }
